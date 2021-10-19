@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    image: 'demo:latest'
+    build: ./
+    container_name: app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresqldb
+  postgresqldb:
+    image: 'postgres:alpine'
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=demodb
